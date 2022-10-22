@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.global.book.entity.Author;
 import com.global.book.entity.Book;
 import com.global.book.repository.BookRepo;
 
@@ -28,6 +29,13 @@ public class BookService {
 		}
 		return bookRepo.save(book);
 	}
+	
+	public List<Book> insertAll(List<Book> books) {
+
+		return bookRepo.saveAll(books);
+	}
+	
+	
 	public Book update(Book book) {
 		Book current = this.findById(book.getId());
 		current.setName(book.getName());
@@ -37,5 +45,8 @@ public class BookService {
 	}
 	public void delete(Long id) {
 		 bookRepo.deleteById(id);
+	}
+	public int deleteAllByAuthorId(Long id) {
+		return bookRepo.deleteAllByAuthorId(id);
 	}
 }

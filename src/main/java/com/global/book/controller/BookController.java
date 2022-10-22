@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.global.book.entity.Book;
+import com.global.book.entity.BookDto;
 import com.global.book.service.BookService;
 
 @RestController
@@ -24,8 +25,14 @@ public class BookController {
 	private BookService bookService;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Book> findById(@PathVariable Long id) {
-		return ResponseEntity.ok(bookService.findById(id));
+	public ResponseEntity<BookDto> findById(@PathVariable Long id) {
+		Book book = bookService.findById(id);
+		BookDto dto = new BookDto();
+		dto.setId(book.getId());
+		dto.setName(book.getName());
+		dto.setPrice(book.getPrice());
+		dto.setAuthor(book.getAuthor());
+		return ResponseEntity.ok(dto);
 	}
 	
 	@GetMapping("")
@@ -42,10 +49,14 @@ public class BookController {
 	public ResponseEntity<Book> update(Book book) {
 		return ResponseEntity.ok(bookService.update(book));
 	}
-	@DeleteMapping("{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Book> delete(@PathVariable Long id) {
 		bookService.delete(id);
 		return ResponseEntity.ok(null);
 
+	}
+	@DeleteMapping("/author/{id}")
+	public ResponseEntity<Integer> deleteByAuthorId(@PathVariable Long id) {
+		return ResponseEntity.ok(bookService.deleteAllByAuthorId(id));
 	}
 }

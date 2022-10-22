@@ -19,7 +19,9 @@ public class AuthorService {
 	public Author findById(Long id) {
 		return authorRepo.findById(id).orElseThrow();
 	}
-
+	public Author getReferenceById(Long id) {
+		return authorRepo.getReferenceById(id);
+	}
 	public List<Author> findAll() {
 		return authorRepo.findAll();
 	}
@@ -29,6 +31,11 @@ public class AuthorService {
 			throw new RuntimeException("ID Is given !");
 		}
 		return authorRepo.save(author);
+	}
+	
+	public List<Author> insertAll(List<Author> authors) {
+
+		return authorRepo.saveAll(authors);
 	}
 	public Author update(Author author) {
 		Author current = this.findById(author.getId());

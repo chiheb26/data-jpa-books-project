@@ -39,7 +39,7 @@ public class AuthorController {
 	}
 	
 	@PutMapping("")
-	public ResponseEntity<Author> update(Author author) {
+	public ResponseEntity<Author> update(@RequestBody Author author) {
 		return ResponseEntity.ok(authorService.update(author));
 	}
 	@DeleteMapping("/{id}")

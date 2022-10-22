@@ -5,44 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.global.book.base.BaseService;
 import com.global.book.entity.Author;
 import com.global.book.repository.AuthorRepo;
 
 
 
 @Service
-public class AuthorService {
+public class AuthorService extends BaseService<Author,Long> {
 	
-	@Autowired
-	private AuthorRepo authorRepo;
-	
-	public Author findById(Long id) {
-		return authorRepo.findById(id).orElseThrow();
-	}
-	public Author getReferenceById(Long id) {
-		return authorRepo.getReferenceById(id);
-	}
-	public List<Author> findAll() {
-		return authorRepo.findAll();
-	}
-	
-	public Author insert(Author author) {
-		if(author.getId()!= null) {
-			throw new RuntimeException("ID Is given !");
-		}
-		return authorRepo.save(author);
-	}
-	
-	public List<Author> insertAll(List<Author> authors) {
-
-		return authorRepo.saveAll(authors);
-	}
+	@Override
 	public Author update(Author author) {
 		Author current = this.findById(author.getId());
 		current.setName(author.getName());
-		return authorRepo.save(current);
+		return super.update(current);
 	}
-	public void delete(Long id) {
-		 authorRepo.deleteById(id);
-	}
+
 }

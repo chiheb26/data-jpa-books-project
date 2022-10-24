@@ -12,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.Formula;
 import org.springframework.data.annotation.CreatedBy;
@@ -22,15 +27,21 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.global.book.base.BaseEntity;
+import com.global.book.validator.IpAddress;
 
 @Entity
 @Table(name="authors")
 public class Author extends BaseEntity<Long>{
 	
-
+	@NotBlank(message="Name field can't be empty !")
 	private String name;
-
 	
+	//@Pattern(regexp="^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})$")
+	@IpAddress(message="Must be a valid IP address")
+	private String ipAddress;
+	@Email
+	private String email;
+	//@NotEmpty
 	@JsonManagedReference
 	@OneToMany(mappedBy = "author")
 	private List<Book> books = new ArrayList<>();	
@@ -67,6 +78,18 @@ public class Author extends BaseEntity<Long>{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getIpAddress() {
+		return ipAddress;
+	}
+	public void setIpAddress(String ipAddress) {
+		this.ipAddress = ipAddress;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	

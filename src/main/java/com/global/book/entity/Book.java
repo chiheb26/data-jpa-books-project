@@ -31,8 +31,8 @@ procedureName="GET_BOOK_BY_AUTHOR",parameters= {
 
 ///////////////////////////////
 //soft delete
-//@SQLDelete(sql = "update books set is_deleted=1 where id=?")
-//@Where(clause = "is_deleted=0")
+//@SQLDelete(sql = "update books set is_deleted=true where id=?")
+//@Where(clause = "is_deleted=false")
 ///////////////////////////////
 @Entity
 @Table(name="books")

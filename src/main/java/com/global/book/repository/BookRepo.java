@@ -50,8 +50,13 @@ public interface BookRepo extends BaseRepository<Book, Long> {
 	@Modifying(flushAutomatically = true, clearAutomatically = true)
 	@Query("delete from Book book where book.author in :authors")
 	int deleteAllByAuthors(List<Author> authors);
+
 	
 	
+	//@Modifying
+	//@Transactional
+	//@Query("update Book b set b.isDeleted = false where b.author.id = ?1")
+	//public void restoreByAuthorId(Long authorId);
 	
 	//@Procedure
 	//int GET_BOOK_BY_AUTHOR(String author_id_in);

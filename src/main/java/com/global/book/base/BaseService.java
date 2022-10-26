@@ -6,6 +6,8 @@ import javax.persistence.MappedSuperclass;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.global.book.error.RecordNotFoundException;
+
 
 
 @MappedSuperclass
@@ -16,7 +18,8 @@ public class BaseService <T extends BaseEntity<ID>, ID extends Number> {
 		
 	
 	public T findById(ID id) {
-		return baseRepository.findById(id).orElseThrow();
+		return baseRepository.findById(id)
+				.orElseThrow(()->new RecordNotFoundException("Record With ID = "+id+" Not Found."));
 	}
 	public T getReferenceById(ID id) {
 		return baseRepository.getReferenceById(id);

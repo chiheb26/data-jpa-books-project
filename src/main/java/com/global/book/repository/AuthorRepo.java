@@ -19,7 +19,8 @@ public interface AuthorRepo extends BaseRepository<Author,Long>,JpaSpecification
 //	@Query(value = "UPDATE Author a SET a.isDeleted = false WHERE a.id = ?1")
 //	@Modifying
 //	public void restoreById(Long id);
-//	Optional<Author> findByEmail(String email);
+
+	Optional<Author> findByEmail(String email);
 
 	
 }

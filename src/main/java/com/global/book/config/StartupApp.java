@@ -26,7 +26,7 @@ public class StartupApp implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		
 		// adding authors
-		
+		if(authorService.findAll().isEmpty()) {
 		Author author1 = new Author();
 		author1.setName("author 1");
 		
@@ -37,9 +37,10 @@ public class StartupApp implements CommandLineRunner{
 		author3.setName("author 3");
 		
 		authorService.insertAll(Arrays.asList(author1,author2,author3));
-		
+		}
 		// adding books
-		
+		if(bookService.findAll().isEmpty()) {
+
 		Book book1 = new Book();
 		book1.setName("Java JPA");
 		book1.setPrice(200);
@@ -57,7 +58,7 @@ public class StartupApp implements CommandLineRunner{
 		
 		bookService.insertAll(Arrays.asList(book1,book2,book3));
 		
-		
+		}
 	}
 
 }

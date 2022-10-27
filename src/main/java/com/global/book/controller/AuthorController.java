@@ -1,8 +1,10 @@
 package com.global.book.controller;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
@@ -58,4 +60,9 @@ public class AuthorController {
 	public ResponseEntity<List<Author>> findByAuthorSpec(@RequestBody AuthorSearch search){
 		return ResponseEntity.ok(authorService.findByAuthorSpec(search));
 	}
+	@GetMapping("/email/{email}")
+	public ResponseEntity<CompletableFuture<Author>> findByEmailAsync(@PathVariable @Email String email){
+		return ResponseEntity.ok(authorService.findByEmailAsync(email));
+
+}
 }

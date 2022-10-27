@@ -37,9 +37,11 @@ public class Author extends BaseEntity<Long>{
 	private String name;
 	
 	//@Pattern(regexp="^([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})\\.([0-9]{1,3})$")
-	@IpAddress(message="Must be a valid IP address")
+	
+	//@IpAddress(message="Must be a valid IP address")
+	@IpAddress
 	private String ipAddress;
-	@Email
+	@Email(message="{validation.constraints.email.message}")
 	private String email;
 	//@NotEmpty
 	@JsonManagedReference

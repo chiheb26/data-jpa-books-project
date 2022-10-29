@@ -43,6 +43,8 @@ public class Author extends BaseEntity<Long>{
 	private String ipAddress;
 	@Email(message="{validation.constraints.email.message}")
 	private String email;
+	private String imagePath;
+
 	//@NotEmpty
 	@JsonManagedReference
 	@OneToMany(mappedBy = "author")
@@ -93,6 +95,12 @@ public class Author extends BaseEntity<Long>{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+	
 	
 }

@@ -9,6 +9,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.amazonaws.services.s3.AbstractAmazonS3;
+import com.amazonaws.services.s3.AmazonS3;
+
 @Configuration
 //@EnableJpaAuditing(auditorAwareRef="name of bean method or bean ref in xml")
 @EnableJpaAuditing(auditorAwareRef="auditorAware")
@@ -34,5 +37,9 @@ public class WebConfig implements WebMvcConfigurer{
 		LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
 		bean.setValidationMessageSource(messageSource());
 		return bean;
+	}
+	@Bean
+	public AmazonS3 amazonS3() {
+		return new AmazonS3Impl();
 	}
 }

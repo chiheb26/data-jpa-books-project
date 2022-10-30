@@ -3,6 +3,7 @@ package com.global.book.config;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -15,6 +16,7 @@ import com.amazonaws.services.s3.AmazonS3;
 @Configuration
 //@EnableJpaAuditing(auditorAwareRef="name of bean method or bean ref in xml")
 @EnableJpaAuditing(auditorAwareRef="auditorAware")
+@EnableAspectJAutoProxy
 public class WebConfig implements WebMvcConfigurer{
 	
 	@Bean

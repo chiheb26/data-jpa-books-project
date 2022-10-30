@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.global.book.service.FileUploadService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping("/upload")
 public class FileUploadController {
@@ -21,6 +23,7 @@ public class FileUploadController {
 	@Autowired
 	private FileUploadService fileUploadService;
 	
+	@Operation(summary = "upload a file")
 	@PostMapping("/file")
 	public ResponseEntity<Object> uploadFile(@RequestParam Long id,@RequestParam String pathType,
 			@RequestParam MultipartFile file){
@@ -28,7 +31,7 @@ public class FileUploadController {
 		String fileName = fileUploadService.storeFile(fileUploadService.convertMultiPartFileToFile(file), id, pathType);
 		return ResponseEntity.ok(fileName);
 	}
-	
+	@Operation(summary = "uplaod multiple files")
 	@PostMapping("/multipleFiles")
 	public List<ResponseEntity<Object>> uploadMultipleFiles(@RequestParam Long id,@RequestParam String pathType,
 			@RequestParam MultipartFile[] files){

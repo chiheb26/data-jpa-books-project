@@ -5,6 +5,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+@Schema(name = "BookDto Entity")
 public class BookDto {
 	private Long id;
 	@NotBlank

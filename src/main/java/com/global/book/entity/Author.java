@@ -29,6 +29,9 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.global.book.base.BaseEntity;
 import com.global.book.validator.IpAddress;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(name = "Author Entity")
 @Entity
 @Table(name="authors")
 public class Author extends BaseEntity<Long>{

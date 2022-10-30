@@ -1,5 +1,8 @@
 package com.global.book.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
+@Schema(name = "AuthorSearch Entity")
 public class AuthorSearch {
 	
 	private String authorName;

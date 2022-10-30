@@ -23,6 +23,8 @@ import org.hibernate.annotations.Where;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.global.book.base.BaseEntity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 @NamedStoredProcedureQuery(name="Book.getBookByAuthor",
 procedureName="GET_BOOK_BY_AUTHOR",parameters= {
 @StoredProcedureParameter(mode=ParameterMode.IN,name="author_id_in",type = String.class),
@@ -37,6 +39,7 @@ procedureName="GET_BOOK_BY_AUTHOR",parameters= {
 @Entity
 @Table(name="books")
 @NamedEntityGraph(name="loadAuthor",attributeNodes=@NamedAttributeNode("author"))
+@Schema(name = "Book Entity")
 public class Book extends BaseEntity<Long>{
 	
 	@NotNull(message="Name field can't be null !")

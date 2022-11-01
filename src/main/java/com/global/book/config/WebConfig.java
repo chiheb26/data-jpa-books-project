@@ -1,5 +1,6 @@
 package com.global.book.config;
 
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,7 @@ import com.amazonaws.services.s3.AmazonS3;
 //@EnableJpaAuditing(auditorAwareRef="name of bean method or bean ref in xml")
 @EnableJpaAuditing(auditorAwareRef="auditorAware")
 @EnableAspectJAutoProxy
+@EnableCaching
 public class WebConfig implements WebMvcConfigurer{
 	
 	@Bean

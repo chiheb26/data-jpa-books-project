@@ -24,12 +24,12 @@ public class PriceSchedule {
 	@Async
 	@SchedulerLock(name="bookComputePrice")
 	public void computePrice() throws InterruptedException {
-		Thread.sleep(4000);
+		Thread.sleep(400000);
 		log.info("Compute Price -> "+ LocalDateTime.now());
 	}
 	
 	
-	@Scheduled(fixedRate = 2000)
+	@Scheduled(fixedRate = 200000)
 	@Async
 	@SchedulerLock(name="bookComputeDiscount")
 	public void computeDiscount() throws InterruptedException {

@@ -1,7 +1,9 @@
 package com.global.book.repository;
 
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -19,8 +21,16 @@ public interface AuthorRepo extends BaseRepository<Author,Long>,JpaSpecification
 //	@Query(value = "UPDATE Author a SET a.isDeleted = false WHERE a.id = ?1")
 //	@Modifying
 //	public void restoreById(Long id);
-
-	Optional<Author> findByEmail(String email);
-
 	
+	@EntityGraph(attributePaths = "books")
+	Optional<Author> findByEmail(String email);
+	
+	@Override
+	@EntityGraph(attributePaths = "books")
+	List<Author> findAll();
+	
+	
+	@Override
+	@EntityGraph(attributePaths = "books")
+	Optional<Author> findById(Long id);
 }
